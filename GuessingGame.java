@@ -6,23 +6,25 @@ public class GuessingGame {
     public static void numberGuessingGame(int maxNumber, int maxTrials) {
         int randomNumber = (int) (Math.random() * maxNumber + 1);
         int userGuess = 0;
+        int attempts;
         Scanner keyboard = new Scanner(System.in);
-        int i;
-
-        System.out.println("\n+---------+ Number Guessing Game +---------+\n"
-            + "We picked a random number between 1 and " + maxNumber + ".");
+        System.out.print("""
+                \n+---------+ Number Guessing Game +---------+
+                We picked a random number between 1 and %d.
+                """.formatted(maxNumber));
         if(maxNumber != maxTrials) {
             System.out.println("You have up to " + maxTrials + " attempts. Try and guess it!");
         }
         System.out.println("+------------------------------------------+\n");
 
-        for(i = 1; i <= maxTrials; i++) {
+        for(attempts = 1; attempts <= maxTrials; attempts++) {
             System.out.println("Type your guess:");
             userGuess = keyboard.nextInt();
 
             if(userGuess < 1 || userGuess > maxNumber) {
-                System.out.println("This is not a valid guess for this game.\n"
-                    + "Type a number between 1 and " + maxNumber + ". Try again!\n");
+                System.out.println("""
+                        This is not a valid guess for this game.
+                        Type a number between 1 and %d. Try again!""".formatted(maxNumber));
             } else if(userGuess < randomNumber) {
                 System.out.println("Your guess is less than the number we picked.\n");
             } else if(userGuess > randomNumber) {
@@ -33,13 +35,15 @@ public class GuessingGame {
         }
 
         if(userGuess == randomNumber) {
-            System.out.println("Congratulations, "
-                + randomNumber
-                + " is the correct answer!\nYou got it right after "
-                + i + " attempts.\n");
+            System.out.println("""
+                    \nCongratulations, %d is the correct answer!
+                    You got it right after %d attempts.
+                    """.formatted(randomNumber, attempts));
         } else {
-            System.out.println("I'm sorry, you didn't get it right within your " + maxTrials
-                + " trials.\n" + "The correct answer was " + randomNumber + ".\n");
+            System.out.println("""
+                    I'm sorry, you didn't get it right within %d attempts.
+                    The correct answer was %d.
+                    """.formatted(maxTrials, randomNumber));
         }
     }
 
@@ -48,11 +52,12 @@ public class GuessingGame {
         int maxNumber;
         int maxTrials;
 
-        System.out.println(
-            "\n+-----+ Make your own game +-----+\n"
-            + "Up to which number should we pick?"
-        );
+        System.out.println("""
+                \n+-----+ Make your own game +-----+
+                Up to which number should we pick?""");
+
         maxNumber = keyboard.nextInt();
+
         while(maxNumber < 1) {
             System.out.println("Invalid number. Try a positive number.");
             maxNumber = keyboard.nextInt();
@@ -60,6 +65,7 @@ public class GuessingGame {
 
         System.out.println("How many attempts do you want?");
         maxTrials = keyboard.nextInt();
+
         while(maxTrials < 1 || maxTrials > maxNumber) {
             System.out.println("Invalid number. It must be positive and less than or equal to"
                 + maxNumber + ".");
@@ -76,15 +82,15 @@ public class GuessingGame {
         int userOption = 0;
 
         do {
-            System.out.println(
-                 "+--+ Number Guessing Game +--+\n"
-               + "+ 1. Unlimited attempts      +\n"
-               + "+ 2. Up to 5 attempts        +\n"
-               + "+ 3. Make your own game      +\n"
-               + "+ 0. Exit                    +\n"
-               + "+----------------------------+"
-            );
-            System.out.println("Choose an option: ");
+            System.out.println("""
+                    +--+ Number Guessing Game +--+
+                    + 1. Unlimited attempts      +
+                    + 2. Up to 5 attempts        +
+                    + 3. Make your own game      +
+                    + 0. Exit                    +
+                    +----------------------------+
+                    
+                    Choose an option:""");
             userOption = keyboard.nextInt();
 
             switch (userOption) {
