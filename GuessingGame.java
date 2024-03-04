@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class GuessingGame {
     public static void numberGuessingGame(int maxNumber, int maxTrials) {
+        Scanner keyboard = new Scanner(System.in);
         int randomNumber = (int) (Math.random() * maxNumber + 1);
         int userGuess = 0;
         int attempts;
-        Scanner keyboard = new Scanner(System.in);
         System.out.print("""
                 \n+---------+ Number Guessing Game +---------+
                 We picked a random number between 1 and %d.
@@ -22,7 +22,7 @@ public class GuessingGame {
             userGuess = keyboard.nextInt();
 
             if(userGuess < 1 || userGuess > maxNumber) {
-                System.out.println("""
+                System.out.printf("""
                         This is not a valid guess for this game.
                         Enter a number between 1 and %d. Try again!""", maxNumber);
             } else if(userGuess < randomNumber) {
@@ -35,12 +35,12 @@ public class GuessingGame {
         }
 
         if(userGuess == randomNumber) {
-            System.out.println("""
+            System.out.printf("""
                     \nCongratulations, %d is the correct answer!
                     You got it right after %d attempts.
                     """, randomNumber, attempts);
         } else {
-            System.out.println("""
+            System.out.printf("""
                     I'm sorry, you didn't get it right within %d attempts.
                     The correct answer was %d.
                     """, maxTrials, randomNumber);
@@ -95,6 +95,8 @@ public class GuessingGame {
                     
                     Choose an option:""");
             userOption = keyboard.nextInt();
+
+            keyboard.close();
 
             switch (userOption) {
                 case 1:
